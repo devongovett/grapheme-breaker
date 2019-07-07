@@ -1,9 +1,3 @@
-/*
- * decaffeinate suggestions:
- * DS104: Avoid inline assignments
- * DS207: Consider shorter variations of null checks
- * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
- */
 const { CR, LF, Control, Extend, Regional_Indicator, SpacingMark, L, V, T, LV, LVT } = require('./classes.json');
 const UnicodeTrie = require('unicode-trie');
 const fs = require('fs');
