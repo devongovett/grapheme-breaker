@@ -6,7 +6,7 @@ const UNICODE_VERSION = '8.0.0';
 const BASE_URL = `http://www.unicode.org/Public/${UNICODE_VERSION}/ucd`;
 
 // this loads the GraphemeBreakProperty.txt file for Unicode 8.0.0 and parses it to
-// combine ranges and generate CoffeeScript
+// combine ranges and generate JavaScript
 request(`${BASE_URL}/auxiliary/GraphemeBreakProperty.txt`, function (err, res, data) {
   let match;
   const re = /^([0-9A-F]+)(?:\.\.([0-9A-F]+))?\s*;\s*([A-Za-z_]+)/gm;
