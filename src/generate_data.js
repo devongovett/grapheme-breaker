@@ -1,9 +1,3 @@
-/*
- * decaffeinate suggestions:
- * DS102: Remove unnecessary code created because of implicit returns
- * DS207: Consider shorter variations of null checks
- * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
- */
 const request = require('request');
 const fs = require('fs');
 const UnicodeTrieBuilder = require('unicode-trie/builder');
@@ -13,12 +7,11 @@ const BASE_URL = `http://www.unicode.org/Public/${UNICODE_VERSION}/ucd`;
 
 // this loads the GraphemeBreakProperty.txt file for Unicode 8.0.0 and parses it to
 // combine ranges and generate CoffeeScript
-request(`${BASE_URL}/auxiliary/GraphemeBreakProperty.txt`, function(err, res, data) {
+request(`${BASE_URL}/auxiliary/GraphemeBreakProperty.txt`, function (err, res, data) {
   let match;
   const re = /^([0-9A-F]+)(?:\.\.([0-9A-F]+))?\s*;\s*([A-Za-z_]+)/gm;
   let nextClass = 1;
-  const classes =
-    {Other: 0};
+  const classes = { Other: 0 };
 
   const trie = new UnicodeTrieBuilder(classes.Other);
 
@@ -36,8 +29,8 @@ request(`${BASE_URL}/auxiliary/GraphemeBreakProperty.txt`, function(err, res, da
   }
 
   // write the trie to a file
-  fs.writeFile(__dirname + '/classes.trie', trie.toBuffer());
+  fs.writeFileSync(__dirname + '/classes.trie', trie.toBuffer());
 
   // write classes to a file
-  return fs.writeFile(__dirname + '/classes.json', JSON.stringify(classes));
+  fs.writeFileSync(__dirname + '/classes.json', JSON.stringify(classes));
 });
